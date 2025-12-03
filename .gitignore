@@ -1,0 +1,33 @@
+# Data science project .gitignore
+# Data source (do not commit /data; download locally from this URL)
+# https://www.kaggle.com/datasets/computingvictor/transactions-fraud-datasets
+
+# Ignore large raw/engineered data
+/data/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter notebook checkpoints
+notebooks/.ipynb_checkpoints/
+
+# Environment and OS
+.env
+.DS_Store
+Thumbs.db
+
+# Keys and secrets
+keys.txt
+keys.txt.pub
+
+# Common large file types (safety)
+*.parquet
+*.zip
+*.gz
+*.xz
+*.tar
+
+# Logs
+*.log
