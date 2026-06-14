@@ -1,62 +1,34 @@
-# 💸 Financial Fraud Detection Dashboard
+# 💸 Production-Grade Financial Fraud Detection Dashboard
 
-An interactive dashboard for analyzing financial transaction fraud, visualizing risk patterns, and evaluating machine learning model performance.
+An end-to-end Machine Learning web application designed to ingest, process, and analyze financial transaction fraud. This platform serves live predictive insights, visualizes global financial risk patterns, and evaluates model performance bottlenecks for production-level decision-making.
 
-## 📋 Features
-- **Global Metrics**: Real-time KPIs for fraudulent transactions and potential financial loss.
-- **Visualizations**:
-  - Fraud trends over time.
-  - High-risk merchant and category analysis.
-  - Entry method (Chip vs. Swipe) risk comparison.
-- **Investigation Desk**: Filterable view of specific fraudulent transactions.
-- **Model Performance (Beta)**: Evaluate XGBoost/Random Forest models with ROC curves and Confusion Matrices.
+Built using **Python, Streamlit, XGBoost, and Parquet**.
 
-## 🛠️ Prerequisites
-- Python 3.8+
-- [Git](https://git-scm.com/)
+---
 
-## 🚀 Installation
+## 🎯 Key Capabilities
+* **Global Executive Metrics:** High-fidelity KPIs tracking real-time fraudulent transaction frequencies, total chargeback risks, and potential financial losses mitigated.
+* **Granular Risk Visualization:** Behavioral trend analysis tracking transaction vectors over time, high-risk merchant categories, and device entry methods (*Chip vs. Swipe*).
+* **Investigation Desk:** An interactive, highly filterable transactional ledger allowing risk analysts to drill down into specific anomalous events.
+* **Model Validation Studio:** A dedicated diagnostics suite providing real-time model evaluation tools, rendering live Confusion Matrices and ROC curves to monitor precision-recall trade-offs.
 
-1.  **Clone the Repository**
-    ```bash
-    git clone <your-repo-url>
-    cd <your-repo-name>
-    ```
+---
 
-2.  **Install Dependencies**
-    ```bash
-    pip install -r requirements.txt
-    ```
+## 🏗️ Technical Architecture & Optimization
+Handling **13+ million rows of data** requires production-level performance awareness. The following engineering principles were implemented:
+* **Storage Optimization:** Leveraged compressed columnar `.parquet` storage instead of standard `.csv` files, reducing memory usage and optimizing chunked data ingestion.
+* **Memory Management:** Implemented caching mechanisms within Streamlit (`st.cache_data`) via a dedicated `utils.py` script to ensure lightning-fast dashboard interactions and prevent UI lag during complex filter updates.
+* **Class Imbalance Engineering:** Addressed extreme fraud-to-legitimate class ratios utilizing algorithmic adjustments within Scikit-learn and XGBoost to prioritize high model recall while maintaining low false-positive overhead.
 
-## 📂 Data Setup
-Because the dataset is large, it is **not included** in this repository.
+---
 
-1.  Download the dataset from Kaggle:
-    [Transactions Fraud Datasets](https://www.kaggle.com/datasets/computingvictor/transactions-fraud-datasets)
-2.  Create a folder named `data` in the project root.
-3.  Place the `data_full_engineered.parquet` (or optimized parquet file) inside the `data/` folder.
-    - *Expected Path:* `data/data_full_engineered.parquet`
+## 📂 Data & Model Setup
 
-## 🤖 Model Setup
-The trained models are also excluded from the repo to save space. You can regenerate them:
+Because the dataset encompasses **over 13 million records**, large binaries are excluded from version control to maintain repo cleanliness.
 
-1.  Run the training scripts (found in users workspace or notebooks):
-    ```bash
-    python evaluate_models.py
-    ```
-    *This will generate `.pkl` files in the `models/` directory.*
-
-## 🏃‍♂️ Running the Dashboard
-
-1.  **Start the Streamlit App**
-    ```bash
-    streamlit run app.py
-    ```
-2.  access the dashboard in your browser at `http://localhost:8501`.
-
-## 📁 Project Structure
-- `app.py`: Main dashboard entry point.
-- `utils.py`: Shared utilities for efficient data loading.
-- `pages/`: Contains the "Model Performance" sub-page.
-- `models/`: Directory for trained model binaries (local only).
-- `data/`: Directory for dataset files (local only).
+### 1. Data Placement
+1. Download the transaction dataset from Kaggle: [Transactions Fraud Datasets](https://www.kaggle.com/datasets/computingvictor/transactions-fraud-datasets)
+2. Create a `/data` folder in the project root directory.
+3. Place your optimized `data_full_engineered.parquet` file inside it:
+   ```text
+   data/data_full_engineered.parquet
